@@ -11,19 +11,19 @@ export default function Information({
 }) {
   const containerRef = useRef(null);
 
-  // ホイールイベントでスクロールの端に達したかをチェック
-  const handleWheel = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    // 
-    // ・上端にいて上方向（deltaY < 0）のスクロールの場合、または
-    // ・下端にいて下方向（deltaY > 0）のスクロールの場合に onScrollToClose を呼び出す
-    if (
-      (scrollTop === 0 && e.deltaY < 0) ||
-      (scrollTop + clientHeight >= scrollHeight && e.deltaY > 0)
-    ) {
-      onScrollToClose();
-    }
-  };
+// Information.jsx 内
+const handleWheel = (e) => {
+  const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+  // 先頭か末端の場合は親のドラッグ処理に切り替える前にデフォルトの動作を防止
+  if (
+    (scrollTop === 0 && e.deltaY < 0) ||
+    (scrollTop + clientHeight >= scrollHeight && e.deltaY > 0)
+  ) {
+    e.preventDefault(); // これにより親へスクロールイベントが伝播しないようにする
+    onScrollToClose();
+  }
+};
+
 
   return (
     <div
