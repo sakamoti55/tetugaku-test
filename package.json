@@ -1,0 +1,34 @@
+{
+  "name": "theme2024-tetugaku",
+  "version": "1.0.0",
+  "main": "vite.config.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "prettier": "^3.4.2",
+    "vite": "^6.0.3"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.2",
+    "@use-gesture/react": "^10.3.1",
+    "bulma": "^1.0.2",
+    "d3": "^7.9.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
+    "react-router": "^7.1.5",
+    "react-router-dom": "^7.1.5",
+    "react-select": "^5.9.0"
+  }
+}
