@@ -18,11 +18,6 @@
   cursor: grab;
 
   overscroll-behavior: contain;
-  /* 必要に応じて */
-  -webkit-overflow-scrolling: touch;
-
-  max-height: 80vh; /* 適切な高さを設定 */
-  overflow-y: auto;
 }
 
 /* ドラッグハンドル部分 */
