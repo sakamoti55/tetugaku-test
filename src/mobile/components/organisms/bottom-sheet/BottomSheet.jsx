@@ -4,10 +4,9 @@ import Information from "../information/Information";
 import "./BottomSheet.css";
 
 const BottomSheetPage = ({ data, nodeId }) => {
-  // openVh: シートが開いたときの上限（画面上部からの位置、0 なら完全に上まで）
-  // closedVh: シートが閉じたときの下限（画面上部からの位置）
-  const openVh = 10; // 必要に応じて変更（例：0なら完全に開く）
-  const closedVh = 80; // 必要に応じて変更（例：90なら画面上部から 90vh の位置）
+  // シートが開いたときと閉じたときの位置（vh の割合で指定）
+  const openVh = 10; // 例：10vh の位置＝上部から 10vh
+  const closedVh = 80; // 例：80vh の位置＝上部から 80vh
 
   const [openPosition, setOpenPosition] = useState(0);
   const [closedPosition, setClosedPosition] = useState(0);
@@ -25,14 +24,17 @@ const BottomSheetPage = ({ data, nodeId }) => {
     return () => window.removeEventListener("resize", updatePositions);
   }, []);
 
+  // Information 内でスクロールが端に達したときに呼ばれる
   const onScrollToClose = () => {
-    setSheetY(sheetY + 0.00000000001);
+    // ※ onScrollToClose 呼び出しで、親側の translate（＝ドラッグ挙動）を開始させるための処理例
+    setSheetY((prev) => prev + 0.00000000001);
   };
 
   const bind = useGesture(
     {
-      onDrag: ({ down, movement: [, my], first, memo = sheetY }) => {
-        if (sheetY === openPosition) return; // 開ききっていたらドラッグ無効
+      onDrag: ({ movement: [, my], first, memo = sheetY }) => {
+        // 既に完全に開いている場合はドラッグ無効
+        if (sheetY === openPosition) return;
 
         if (first) memo = sheetY;
         const newY = memo + my;
@@ -54,9 +56,12 @@ const BottomSheetPage = ({ data, nodeId }) => {
         <div className="handle" />
       </div>
 
+      {/* sheetY と openPosition を props として渡す */}
       <Information
         data={data}
         nodeId={nodeId}
+        sheetY={sheetY}
+        openPosition={openPosition}
         onScrollToClose={onScrollToClose}
       />
     </div>

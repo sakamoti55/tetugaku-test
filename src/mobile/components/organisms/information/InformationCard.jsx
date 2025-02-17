@@ -5,6 +5,7 @@ export default function InformationCard({ data, nodeId }) {
   const [nodeInfo, setNodeInfo] = useState(null);
   const [philosopherName, setPhilosopherName] = useState("");
 
+  // デモ用に nodeId を固定（実際は props の nodeId を利用）
   nodeId = 21;
   useEffect(() => {
     if (!data || !nodeId) return;
@@ -31,6 +32,7 @@ export default function InformationCard({ data, nodeId }) {
       </React.Fragment>
     ));
   };
+
   return (
     <div>
       <h1 className="information-name-fm">{philosopherName}</h1>

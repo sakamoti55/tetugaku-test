@@ -11,9 +11,17 @@ export default function Information({
 }) {
   const containerRef = useRef(null);
 
-  const handleScroll = () => {
-    if (containerRef.current.scrollTop === 0) {
-      onScrollToClose(); // 最上部に達したらスムーズに閉じる
+  // ホイールイベントでスクロールの端に達したかをチェック
+  const handleWheel = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    // 
+    // ・上端にいて上方向（deltaY < 0）のスクロールの場合、または
+    // ・下端にいて下方向（deltaY > 0）のスクロールの場合に onScrollToClose を呼び出す
+    if (
+      (scrollTop === 0 && e.deltaY < 0) ||
+      (scrollTop + clientHeight >= scrollHeight && e.deltaY > 0)
+    ) {
+      onScrollToClose();
     }
   };
 
@@ -22,10 +30,11 @@ export default function Information({
       ref={containerRef}
       className="information-container-fm"
       style={{
+        // シートが完全に開いているときのみ内部スクロール可能にする
         overflowY: sheetY === openPosition ? "auto" : "hidden",
         scrollBehavior: "smooth",
       }}
-      onScroll={handleScroll}
+      onWheel={handleWheel}  // onScroll ではなく onWheel を利用
     >
       <div className="information-header-fm">解説</div>
       <InformationCard data={data} nodeId={nodeId} />
