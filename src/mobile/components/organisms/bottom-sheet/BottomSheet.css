@@ -16,6 +16,8 @@
   display: flex;
   flex-direction: column;
   cursor: grab;
+
+  overscroll-behavior: contain;
 }
 
 /* ドラッグハンドル部分 */
