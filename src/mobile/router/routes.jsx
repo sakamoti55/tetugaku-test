@@ -7,7 +7,9 @@ import Home from "@m/components/pages/main/Home.jsx";
 // ルート定義を簡略化
 const route = (path, element, children = []) => ({ path, element, children });
 
-const mainRoutes = [route("/", <MainLayouts />, [route("sheet", <Home />)])];
+const mainRoutes = [
+  route("/main", <MainLayouts />, [route("sheet", <Home />)]),
+];
 
 export const routes = [
   route("/", <RootLayouts />, [

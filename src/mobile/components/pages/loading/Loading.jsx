@@ -8,7 +8,7 @@ export default function Loading() {
     // 0秒後に/homeに遷移
     // todo グラフ描画後等に変更
     const timer = setTimeout(() => {
-      navigate("/sheet");
+      navigate("/main/sheet");
     }, 0);
 
     return () => clearTimeout(timer);
