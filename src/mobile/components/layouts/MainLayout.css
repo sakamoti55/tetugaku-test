@@ -1,5 +1,6 @@
 .main-layout {
   /* border: 2px solid green; */
+  touch-action:none;
 }
 
 .main-mobile {
