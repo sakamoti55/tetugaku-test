@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./Desktop/App.jsx";
-import AppFM from "./Mobile/App.jsx";
+import App from "./desktop/App.jsx";
+import AppFM from "./mobile/App.jsx";
 import { routes } from "@m/router/routes.jsx";
 
 function AppContainer() {
